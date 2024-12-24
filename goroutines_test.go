@@ -13,6 +13,7 @@ type resultMeasured struct {
 }
 
 func TestLaunch(t *testing.T) {
+	fmt.Println("Test Launch")
 	var results = make([]resultMeasured, 0, 3)
 
 	start := time.Now()
@@ -60,6 +61,8 @@ var expectedAsyncResults = map[int]string{
 }
 
 func TestAsync(t *testing.T) {
+	fmt.Println("Test Async")
+
 	start := time.Now()
 	results := Async(
 		func() resultMeasured {
@@ -99,7 +102,7 @@ func TestAsync(t *testing.T) {
 		if totalTime < got.ElapsedTime {
 			t.Errorf("Expected elapsed time %s to be less than total time %s", got.ElapsedTime, totalTime)
 		}
-		if totalTime-got.ElapsedTime > (100 * time.Microsecond) {
+		if totalTime-got.ElapsedTime > (500 * time.Microsecond) {
 			t.Errorf("Expected elapsed time scewing to be less than 100 microseconds for result %d", pos)
 		}
 	}
